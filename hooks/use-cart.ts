@@ -1,9 +1,10 @@
 import { create } from "zustand";
-import { persist, createJSONStorage } from "zustand/middleware";
 import { toast } from "react-hot-toast";
+import { persist, createJSONStorage } from "zustand/middleware";
+
 import { Product } from "@/types";
 
-interface CardStore {
+interface CartStore {
   items: Product[];
   addItem: (data: Product) => void;
   removeItem: (id: string) => void;
@@ -11,23 +12,23 @@ interface CardStore {
 }
 
 const useCart = create(
-  persist<CardStore>(
+  persist<CartStore>(
     (set, get) => ({
       items: [],
       addItem: (data: Product) => {
-        const currentItem = get().items;
-        const existingItem = currentItem.find((item) => item.id === data.id);
+        const currentItems = get().items;
+        const existingItem = currentItems.find((item) => item.id === data.id);
 
         if (existingItem) {
-          return toast("Item already exists");
+          return toast("Item already in cart.");
         }
 
         set({ items: [...get().items, data] });
-        toast("Item added to Card");
+        toast.success("Item added to cart.");
       },
       removeItem: (id: string) => {
         set({ items: [...get().items.filter((item) => item.id !== id)] });
-        toast("Item removed from Card");
+        toast.success("Item removed from cart.");
       },
       removeAll: () => set({ items: [] }),
     }),
