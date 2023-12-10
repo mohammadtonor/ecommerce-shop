@@ -5,7 +5,7 @@ import ProductList from "@/components/product-list";
 import Container from "@/components/ui/container";
 
 const HomePage = async () => {
-  const products = await getProducts({ isFeatured: true, isArchived: false });
+  const products = await getProducts({ isFeatured: true });
   const billboard = await getBillboard("e0d42fea-92a3-41d8-bd97-e6cb4f6d72a4");
 
   return (
