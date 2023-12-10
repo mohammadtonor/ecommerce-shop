@@ -2,11 +2,22 @@
 
 import CartItem from "@/app/(routes)/cart/components/cart-item";
 import Container from "@/components/ui/container";
-import useCard from "@/hooks/use-card";
+import useCart from "@/hooks/use-cart";
 import Summary from "./components/summary";
+import { useEffect, useState } from "react";
 
 const CartPage = () => {
-  const cart = useCard();
+  const cart = useCart();
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return null;
+  }
+
   return (
     <div className="bg-white">
       <Container>

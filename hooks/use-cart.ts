@@ -10,7 +10,7 @@ interface CardStore {
   removeAll: () => void;
 }
 
-const useCard = create(
+const useCart = create(
   persist<CardStore>(
     (set, get) => ({
       items: [],
@@ -38,4 +38,4 @@ const useCard = create(
   )
 );
 
-export default useCard;
+export default useCart;

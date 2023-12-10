@@ -8,7 +8,7 @@ import Currency from "./currency";
 import { useRouter } from "next/navigation";
 import { MouseEventHandler } from "react";
 import usePreviewModal from "@/hooks/use-preview-modal";
-import useCard from "@/hooks/use-card";
+import useCard from "@/hooks/use-cart";
 
 interface ProductCardProps {
   data: Product;
